@@ -42,6 +42,16 @@ bool ParticipantsOfTheCompetition::operator==(const ParticipantsOfTheCompetition
     return first_name == Participant.first_name && last_name == Participant.last_name && _category == Participant._category && _country == Participant._country && birth_year == Participant.birth_year && id_Participant == Participant.id_Participant;
 }
 
+bool ParticipantsOfTheCompetition::operator<(const ParticipantsOfTheCompetition& Participant) const
+{
+    return last_name < Participant.last_name;
+}
+
+bool ParticipantsOfTheCompetition::operator>(const ParticipantsOfTheCompetition& Particicipant) const
+{
+    return last_name > Particicipant.last_name;
+}
+
 bool Date::operator==(const Date& birthYear) const
 {
     return day == birthYear.day && month == birthYear.month && year == birthYear.year;
@@ -163,26 +173,26 @@ singlyLinkedList<T>::singlyLinkedList()
 template<typename T>
 singlyLinkedList<T>::~singlyLinkedList()
 {
-    /*Удаление списка происходит с конца. В первом цикле считается количество удаленых ячеек (i=0 - 0 удаленных ячеек). Перед входом во втором цикле
-    инициализируем временные переменные, где current инициализируется хедом, от которого происходит движение во втором цикле. Второй цикл с каждым вызовом делает меньше итерации.
-    Понятное дело, что он не выйдет за границы ячеек, потому что его ограничивает (size-i), который показывает количество ячеек в списке на данный момент.*/
+    /*РЈРґР°Р»РµРЅРёРµ СЃРїРёСЃРєР° РїСЂРѕРёСЃС…РѕРґРёС‚ СЃ РєРѕРЅС†Р°. Р’ РїРµСЂРІРѕРј С†РёРєР»Рµ СЃС‡РёС‚Р°РµС‚СЃСЏ РєРѕР»РёС‡РµСЃС‚РІРѕ СѓРґР°Р»РµРЅС‹С… СЏС‡РµРµРє (i=0 - 0 СѓРґР°Р»РµРЅРЅС‹С… СЏС‡РµРµРє). РџРµСЂРµРґ РІС…РѕРґРѕРј РІРѕ РІС‚РѕСЂРѕРј С†РёРєР»Рµ
+    РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РІСЂРµРјРµРЅРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ, РіРґРµ current РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚СЃСЏ С…РµРґРѕРј, РѕС‚ РєРѕС‚РѕСЂРѕРіРѕ РїСЂРѕРёСЃС…РѕРґРёС‚ РґРІРёР¶РµРЅРёРµ РІРѕ РІС‚РѕСЂРѕРј С†РёРєР»Рµ. Р’С‚РѕСЂРѕР№ С†РёРєР» СЃ РєР°Р¶РґС‹Рј РІС‹Р·РѕРІРѕРј РґРµР»Р°РµС‚ РјРµРЅСЊС€Рµ РёС‚РµСЂР°С†РёРё.
+    РџРѕРЅСЏС‚РЅРѕРµ РґРµР»Рѕ, С‡С‚Рѕ РѕРЅ РЅРµ РІС‹Р№РґРµС‚ Р·Р° РіСЂР°РЅРёС†С‹ СЏС‡РµРµРє, РїРѕС‚РѕРјСѓ С‡С‚Рѕ РµРіРѕ РѕРіСЂР°РЅРёС‡РёРІР°РµС‚ (size-i), РєРѕС‚РѕСЂС‹Р№ РїРѕРєР°Р·С‹РІР°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ СЏС‡РµРµРє РІ СЃРїРёСЃРєРµ РЅР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚.*/
     for (int i = 0; i < size; i++)
     {
         Node<T>* current = head;
 
         for (int j = 0; j < size - i; j++)
         {
-            current = current->next; //двигаемся к крайнему элемент
+            current = current->next; //РґРІРёРіР°РµРјСЃСЏ Рє РєСЂР°Р№РЅРµРјСѓ СЌР»РµРјРµРЅС‚
         }
 
-        delete current; //удаляем крайний элемент
+        delete current; //СѓРґР°Р»СЏРµРј РєСЂР°Р№РЅРёР№ СЌР»РµРјРµРЅС‚
     }
-    //при выходе из счётчика все ячейки списка удалены, остался только size и указатель head
+    //РїСЂРё РІС‹С…РѕРґРµ РёР· СЃС‡С‘С‚С‡РёРєР° РІСЃРµ СЏС‡РµР№РєРё СЃРїРёСЃРєР° СѓРґР°Р»РµРЅС‹, РѕСЃС‚Р°Р»СЃСЏ С‚РѕР»СЊРєРѕ size Рё СѓРєР°Р·Р°С‚РµР»СЊ head
 
     size = 0;
     delete head;
 
-    std::cout << "\n\nВызван декстркутор, список очищен!" << std::endl;
+    std::cout << "\n\nР’С‹Р·РІР°РЅ РґРµРєСЃС‚СЂРєСѓС‚РѕСЂ, СЃРїРёСЃРѕРє РѕС‡РёС‰РµРЅ!" << std::endl;
 }
 
 template<typename T>
@@ -211,20 +221,20 @@ void singlyLinkedList<T>::push_front(T data)
 template<typename T>
 void singlyLinkedList<T>::push_back(T data)
 {
-    if (this->head == nullptr) // если голова списка пуста
+    if (this->head == nullptr) // РµСЃР»Рё РіРѕР»РѕРІР° СЃРїРёСЃРєР° РїСѓСЃС‚Р°
     {
-        this->head = new Node<T>(data); //вносим данные в голову списка
+        this->head = new Node<T>(data); //РІРЅРѕСЃРёРј РґР°РЅРЅС‹Рµ РІ РіРѕР»РѕРІСѓ СЃРїРёСЃРєР°
         this->size++;
     }
     else
     {
-        Node<T>* current = this->head; //начинаем движение от головы списка до крайней ячейки списка
+        Node<T>* current = this->head; //РЅР°С‡РёРЅР°РµРј РґРІРёР¶РµРЅРёРµ РѕС‚ РіРѕР»РѕРІС‹ СЃРїРёСЃРєР° РґРѕ РєСЂР°Р№РЅРµР№ СЏС‡РµР№РєРё СЃРїРёСЃРєР°
         while (current->next != nullptr)
         {
             current = current->next;
         }
         this->size++;
-        current->next = new Node<T>(data); //в крайней ячейке списка, указываем адресс на новую ячейку
+        current->next = new Node<T>(data); //РІ РєСЂР°Р№РЅРµР№ СЏС‡РµР№РєРµ СЃРїРёСЃРєР°, СѓРєР°Р·С‹РІР°РµРј Р°РґСЂРµСЃСЃ РЅР° РЅРѕРІСѓСЋ СЏС‡РµР№РєСѓ
     }
 }
 
@@ -247,7 +257,7 @@ T& singlyLinkedList<T>::operator[](const int index)
 template<typename T>
 void singlyLinkedList<T>::printList()
 {
-    Node<T>* current = this->head; //начинаем движение от головы списка до крайней ячейке списка
+    Node<T>* current = this->head; //РЅР°С‡РёРЅР°РµРј РґРІРёР¶РµРЅРёРµ РѕС‚ РіРѕР»РѕРІС‹ СЃРїРёСЃРєР° РґРѕ РєСЂР°Р№РЅРµР№ СЏС‡РµР№РєРµ СЃРїРёСЃРєР°
     for (int i = 0; i < size; i++)
     {
         std::cout.width(5);
@@ -351,7 +361,7 @@ BinaryTree<T>::BinaryTree()
 template<typename T>
 BinaryTree<T>::~BinaryTree()
 {
-
+    clearHelpler(root);
 }
 
 template<typename T>
@@ -406,6 +416,7 @@ void BinaryTree<T>::search(T searchData)
     }
 }
 
+
 int main()
 {
     setlocale(LC_ALL, "Rus");
@@ -416,42 +427,34 @@ int main()
 
     singlyLinkedList<ParticipantsOfTheCompetition> List;
 
-    //Проверка на открытие файла
+    //РџСЂРѕРІРµСЂРєР° РЅР° РѕС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
     if (!file.is_open())
     {
         std::cout << "File opening error!" << std::endl;
     }
     else
     {
-            //Пока файл не дошёл до конца
+            //РџРѕРєР° С„Р°Р№Р» РЅРµ РґРѕС€С‘Р» РґРѕ РєРѕРЅС†Р°
             while (!file.eof())
             {
-                //Создаём временную переменную
+                //РЎРѕР·РґР°С‘Рј РІСЂРµРјРµРЅРЅСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ
                 ParticipantsOfTheCompetition tmp;
 
-                //Считываем из файла значения во временную переменную
+                //РЎС‡РёС‚С‹РІР°РµРј РёР· С„Р°Р№Р»Р° Р·РЅР°С‡РµРЅРёСЏ РІРѕ РІСЂРµРјРµРЅРЅСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ
                 file >> tmp;
 
-                //Если достигнут конец файла, завершаем работу цикла
+                //Р•СЃР»Рё РґРѕСЃС‚РёРіРЅСѓС‚ РєРѕРЅРµС† С„Р°Р№Р»Р°, Р·Р°РІРµСЂС€Р°РµРј СЂР°Р±РѕС‚Сѓ С†РёРєР»Р°
                 if (file.eof())
                 {
                     break;
                 }
-                //Записываем участника в список
+                //Р—Р°РїРёСЃС‹РІР°РµРј СѓС‡Р°СЃС‚РЅРёРєР° РІ СЃРїРёСЃРѕРє
                 List.push_back(tmp);
             }
     }
     file.close();
-    List.pop_back();
-    List.pop_front();
+
     List.printList();
-
-    BinaryTree<ParticipantsOfTheCompetition> a;
-    a.insert(List[0]);
-
-    //a.simmetricBypass();
-    //a.directBypass();
-    //a.reverseBypass();
 
     system("pause>nul");
     return 0;
