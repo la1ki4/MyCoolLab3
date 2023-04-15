@@ -53,10 +53,22 @@ public:
 	const ParticipantsOfTheCompetition& operator=(const ParticipantsOfTheCompetition&);
 
 	/**
-	@brief Overloading the comparison operator
+	@brief Overloading the 'comparison '==' operator
 	@brief Allows you to compare objects of the ParticipantsOfTheCompetition class
 	*/
 	bool operator==(const ParticipantsOfTheCompetition&) const;
+
+	/**
+	@brief Overloading the '' operator
+	@brief Allows you to compare objects of the ParticipantsOfTheCompetition class from the last_name field
+	*/
+	bool operator<(const ParticipantsOfTheCompetition&) const;
+
+	/**
+	@brief Overloading the '>' operator
+	@brief Allows you to compare objects of the ParticipantsOfTheCompetition class from the last_name field
+	*/
+	bool operator>(const ParticipantsOfTheCompetition&) const;
 
 	/// <summary>
 	/// LastName method
