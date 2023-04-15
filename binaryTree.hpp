@@ -146,6 +146,21 @@ private:
 			}
 		}
 	}
+	void clearHelpler(Node<T>* root)
+	{
+		if (root != nullptr)
+		{
+			if (root->leftChild != nullptr)
+			{
+				clearHelpler(root->leftChild);
+			}
+			if (root->rightChild != nullptr)
+			{
+				clearHelpler(root->rightChild);
+			}
+			delete root;
+		}
+	}
 
 public:
 	BinaryTree();
